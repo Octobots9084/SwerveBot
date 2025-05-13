@@ -56,18 +56,24 @@ public class MathUtil {
 
   public static double[] circleVectorFromSquare(double x, double y, double vectorScaleFactor) {
     double angle = Math.atan2(y, x);
-    double maxDist = (0.375 + ((Math.asin(Math.sin(2 * (angle + 0.785398163397) + 1.57079632679)))
-        / (Math.sin(2 * (angle + 0.785398163397) + 1.57079632679) * 1.57079632679)));
+    double maxDist =
+        (0.375
+            + ((Math.asin(Math.sin(2 * (angle + 0.785398163397) + 1.57079632679)))
+                / (Math.sin(2 * (angle + 0.785398163397) + 1.57079632679) * 1.57079632679)));
     double scaleRatio = vectorScaleFactor * Math.sqrt(x * x + y * y) / maxDist;
-    return new double[] { x * scaleRatio, y * scaleRatio };
+    return new double[] {x * scaleRatio, y * scaleRatio};
   }
 
-  public static ChassisSpeeds limitXAndYAcceleration(ChassisSpeeds targetChassisSpeeds,
-      ChassisSpeeds currentChassisSpeeds, double maxAccelerationX, double maxAccelerationY, double loopTime) {
-    double targetAccelerationX = (targetChassisSpeeds.vxMetersPerSecond - currentChassisSpeeds.vxMetersPerSecond)
-        / loopTime;
-    double targetAccelerationY = (targetChassisSpeeds.vyMetersPerSecond - currentChassisSpeeds.vyMetersPerSecond)
-        / loopTime;
+  public static ChassisSpeeds limitXAndYAcceleration(
+      ChassisSpeeds targetChassisSpeeds,
+      ChassisSpeeds currentChassisSpeeds,
+      double maxAccelerationX,
+      double maxAccelerationY,
+      double loopTime) {
+    double targetAccelerationX =
+        (targetChassisSpeeds.vxMetersPerSecond - currentChassisSpeeds.vxMetersPerSecond) / loopTime;
+    double targetAccelerationY =
+        (targetChassisSpeeds.vyMetersPerSecond - currentChassisSpeeds.vyMetersPerSecond) / loopTime;
 
     if (Math.abs(targetAccelerationX) > maxAccelerationX) {
       targetAccelerationX = maxAccelerationX * Math.signum(targetAccelerationX);
@@ -77,9 +83,9 @@ public class MathUtil {
       targetAccelerationY = maxAccelerationY * Math.signum(targetAccelerationY);
     }
 
-    return new ChassisSpeeds(currentChassisSpeeds.vxMetersPerSecond + targetAccelerationX * loopTime,
+    return new ChassisSpeeds(
+        currentChassisSpeeds.vxMetersPerSecond + targetAccelerationX * loopTime,
         currentChassisSpeeds.vyMetersPerSecond + targetAccelerationY * loopTime,
         targetChassisSpeeds.omegaRadiansPerSecond);
-
   }
 }

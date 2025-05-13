@@ -30,7 +30,9 @@ public class TeleopDrive extends Command {
     switch (swerveInstance.getDriveState()) {
       case Manual:
         SmartDashboard.putString("the code works!!", "nope sorry");
-        double[] speeds = MathUtil.circleVectorFromSquare(vX.getAsDouble(), vY.getAsDouble(), swerveInstance.getIo().getMaxSpeed()); 
+        double[] speeds =
+            MathUtil.circleVectorFromSquare(
+                vX.getAsDouble(), vY.getAsDouble(), swerveInstance.getIo().getMaxSpeed());
         Swerve.getInstance()
             .driveFieldRelative(
                 new ChassisSpeeds(
