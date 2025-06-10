@@ -1,5 +1,6 @@
 package frc.robot;
 
+import frc.robot.Subsystems.Swerve.Swerve;
 import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
@@ -7,7 +8,12 @@ import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
 public class Robot extends LoggedRobot {
+  private RobotContainer robotContainer;
+
   public Robot() {
     Logger.recordMetadata("ProjectName", BuildConstants.MAVEN_NAME);
     Logger.recordMetadata("BuildDate", BuildConstants.BUILD_DATE);
@@ -48,7 +54,15 @@ public class Robot extends LoggedRobot {
   }
 
   @Override
-  public void robotPeriodic() {}
+  public void robotInit() {
+    robotContainer = new RobotContainer();
+    Swerve.getInstance().zeroGyro();
+  }
+
+  @Override
+  public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
+  }
 
   @Override
   public void disabledInit() {}

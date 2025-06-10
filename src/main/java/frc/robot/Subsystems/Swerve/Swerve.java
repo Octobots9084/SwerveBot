@@ -18,13 +18,10 @@ public class Swerve extends SubsystemBase {
   private final SwerveIOInputsAutoLogged inputs = new SwerveIOInputsAutoLogged();
   private static Swerve INSTANCE = null;
 
-  public static enum DriveState {
-    None,
-    Manual,
-    AlignReef,
-    AlignProcessor,
-    AlignSource
-  };
+    public static enum DriveState {
+        None,
+        Manual
+    };
 
   private DriveState driveState = DriveState.None;
 

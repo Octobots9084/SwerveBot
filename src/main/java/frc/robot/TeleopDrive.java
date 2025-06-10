@@ -24,7 +24,7 @@ public class TeleopDrive extends Command {
   public void initialize() {
     SmartDashboard.putString("Command", "command");
   }
-
+  
   @Override
   public void execute() {
     switch (swerveInstance.getDriveState()) {
@@ -39,12 +39,6 @@ public class TeleopDrive extends Command {
                     speeds[0],
                     speeds[1],
                     omega.getAsDouble() * swerveInstance.getIo().getMaxTurnSpeed()));
-        break;
-      case AlignReef:
-        SmartDashboard.putString("AlignReef", "AllignReef");
-      case AlignProcessor:
-        break;
-      case AlignSource:
         break;
       default:
         SmartDashboard.putString("the code works!!", "nope sorry");
