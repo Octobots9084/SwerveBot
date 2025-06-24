@@ -24,7 +24,7 @@ public class TeleopDrive extends Command {
   public void initialize() {
     SmartDashboard.putString("Command", "command");
   }
-  
+
   @Override
   public void execute() {
     switch (swerveInstance.getDriveState()) {
